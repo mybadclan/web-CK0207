@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1020px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body .page {
+  position: relative;
+}
+
+/* HEADER STYLE RULES ---- BEGIN */
+
+.fixed-header {
+  background-color: #000;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+
+  list-style: none;
+  height: 6vh;
+}
+
+.header-list .dropbtn {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dropdown {
+  position: relative;
+  padding: 0 1rem;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  transition: background 0.2s;
+}
+
+.dropdown:hover {
+  background: #F04444;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 45px;
+  left: 0;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.1s ease, opacity 0.4s ease;
+
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+
+  background-color: #fff;
+  box-shadow: 0 0 5px 5px #0000001B;
+}
+
+.dropdown-content:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dropdown:hover .dropbtn + .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dropdown-content a {
+  padding: 0.5rem;
+}
+
+/* HEADER STYLE RULES ---- END */
+
+/* FOOTER STYLE RULES ---- BEGIN */
+
+.fixed-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* FOOTER STYLE RULES ---- END */
