@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --orange: orange;
+  --white: #fff;
+  --black: #000;
+  --blue-700: #506380;
+  --red: #F04444;
+}
+
 @media (max-width: 1020px) {
   html {
     font-size: 93.75%;
@@ -32,7 +40,7 @@ body .page {
 /* HEADER STYLE RULES ---- BEGIN */
 
 .fixed-header {
-  background-color: #000;
+  background-color: var(--black);
 
   position: fixed;
   left: 0;
@@ -51,7 +59,7 @@ body .page {
 }
 
 .header-list .dropbtn {
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
 }
 
@@ -67,7 +75,7 @@ body .page {
 }
 
 .dropdown:hover {
-  background: #F04444;
+  background: var(--red);
 }
 
 .dropdown-content {
@@ -85,16 +93,11 @@ body .page {
   padding: 0.3rem 0.5rem;
   border-radius: 0.2rem;
 
-  background-color: #fff;
+  background-color: var(--white);
   box-shadow: 0 0 5px 5px #0000001B;
 }
 
-.dropdown-content:hover {
-  visibility: visible;
-  opacity: 1;
-}
-
-.dropdown:hover .dropbtn + .dropdown-content {
+.dropdown:hover .dropbtn ~ .dropdown-content {
   visibility: visible;
   opacity: 1;
 }
@@ -113,10 +116,105 @@ body .page {
   right: 0;
   bottom: 0;
 
-  background: #000;
-  color: #fff;
+  background: var(--black);
+  color: var(--white);
   text-align: center;
   padding: 0.5rem 0;
 }
 
 /* FOOTER STYLE RULES ---- END */
+
+/* PAGE STYLE RULES ---- START */
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6vh 0;
+}
+
+.conteudo .banner {
+  width: 100%;
+  height: 485px;
+  /* border-radius: 10px; */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+
+  background-image: url(/img/banner.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.centralizado {
+  max-width: 1120px;
+  margin-top: 2rem;
+  display: flex;
+
+
+}
+
+.secoes {
+  background-color: var(--blue-700);
+  color: var(--white);
+
+  text-align: center;
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+
+  height: 190px;
+}
+
+.secoes h1 {
+  margin-bottom: 0.5rem;
+}
+
+.secoes .botao {
+  background-color: var(--white);
+  color: var(--blue-700);
+  padding: 0.5rem;
+
+  width: 100px;
+  margin: 0.5rem auto 0;
+}
+
+.secoes .botao:hover {
+  background-color: var(--orange);
+  color: var(--white);
+  border: 1px solid var(--white);
+}
+
+.texto {
+  max-width: 1120px;
+  margin: 0 auto 8vh;
+  padding: 0 1rem;
+}
+
+.texto .titulo {
+  margin-bottom: 1.2rem;
+}
+
+.texto .titulo span {
+  border-bottom: 3px solid var(--orange);
+}
+
+.texto .subtitulo {
+  margin: 1.2rem 0;
+}
+
+.texto p {
+  margin: 1.2rem 0;
+  line-height: 1.5rem;
+  text-align: justify;
+  text-indent: 4rem;
+}
+
+#coordenacao {
+  text-align: right;
+}
+
+/* PAGE STYLE RULES ---- END */
