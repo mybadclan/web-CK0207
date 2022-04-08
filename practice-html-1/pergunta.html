@@ -1,12 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perguntas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pergunta</title>
 </head>
 <body>
-  
+  <!--Cabeçalho da página-->
+  <header>
+    <h1>Universidade</h1>
+  </header>
+  <hr/>
+
+  <form>
+    <label>Nome: </label><br>
+    <input type="text" name="nome-completo" value="Nome Completo"><br>
+
+    <label>Email: </label><br>
+    <input type="email" name="email" value="Email"><br>
+
+    <label>Região: </label><br>
+    <select>
+      <option>Norte</option>
+      <option>Sul</option>
+      <option>Sudeste</option>
+      <option>Nordeste</option>
+      <option>Centro-Oeste</option>
+    </select><br>
+
+    <label>Pergunta: </label><br>
+    <input type="text" name="pergunta" value="Faça sua pergunta"><br>
+
+    <input type="submit" name="enviar" value="Enviar">
+    <input type="submit" name="redefinir" value="Redefinir"><br>
+  </form>
+  <br>
+
+  <a href="index.html">Voltar para a página principal</a>
+
 </body>
 </html>
