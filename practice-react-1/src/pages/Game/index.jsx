@@ -1,11 +1,11 @@
+import { Page } from '../../components';
+
 import styles from './styles.module.scss';
 
 export function Game() {
   return (
-    <div className={styles.game}>
-      <div className={styles.container}>
-        game
-      </div>
-    </div>
+    <Page className={styles.game}>
+      hello
+    </Page>
   )
 }
