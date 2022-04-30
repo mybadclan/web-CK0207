@@ -1,0 +1,51 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #FAC27C
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  height: 8vh;
+
+  color: #FAC27C;
+
+  a {
+    color: #FAC27C;
+  }
+
+  h1 {
+    font-size: 2rem;
+    height: 100%;
+
+    display: flex;
+    line-height: 3.3rem;
+  }
+
+  nav {
+    margin-left: 2rem;
+    height: 100%;
+
+    ul {
+      list-style: none;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      li {
+        margin: 0 1rem;
+
+        & a {
+          transition: filter 0.2s;
+        }
+
+        &:hover a {
+          filter: brightness(0.7);
+        }
+      }
+    }
+  }
+}
