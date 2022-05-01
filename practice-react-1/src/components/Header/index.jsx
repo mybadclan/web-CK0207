@@ -8,14 +8,6 @@ export function Header() {
         <h1>
           <Link to="/">Beach Tennis</Link>
         </h1>
-
-        <nav>
-          <ul>
-            <li>
-              <Link to="/game">Jogo</Link>
-            </li>
-          </ul>
-        </nav>
       </div>
     </header>
   );

@@ -1,11 +1,11 @@
-import { Page } from '../../components';
+import { Page, Team } from '../../components';
 
 import styles from './styles.module.scss';
 
 export function Register() {
   return (
     <Page className={styles.register}>
-      Registro
+      <Team />
     </Page>
   );
 }

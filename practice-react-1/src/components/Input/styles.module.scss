@@ -1,0 +1,43 @@
+.player {
+  margin: 1.5rem 0;
+  position: relative;
+
+  label, input {
+    display: block;
+  }
+
+  label {
+    margin-bottom: 0.6rem;
+    padding: 0 8px 0 3px;
+    background-color: #fff;
+    color: #d3d3d3;
+
+    position: absolute;
+    top: 50%;
+    left: 6px;
+
+    transform: translate(0, -50%);
+    transition: top 0.2s, font-size 0.2s;
+    cursor: text;
+  }
+
+  input {
+    height: 35px;
+    width: 100%;
+    border-radius: 0.3rem;
+    border: 1px solid #BDBDBD;
+    padding-left: 10px;
+    
+    &:focus-visible {
+      outline: 1px solid #A3A3A3;
+    }
+
+  }
+}
+
+.active {
+  label {
+    font-size: 0.8rem;
+    top: -2px;
+  }
+}

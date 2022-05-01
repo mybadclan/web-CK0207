@@ -1,0 +1,49 @@
+.team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  button {
+    margin: 3rem 0 0;
+    padding: 0.6rem 1rem;
+    background-color: #FAC27C;
+    border: none;
+    border-radius: 0.5rem;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+
+    &:disabled {
+      background-color: #C9C9C9;
+      cursor: not-allowed;
+
+      &:hover {
+        filter: none;
+      }
+    }
+  }
+}
+
+.teams {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.teamCards {
+  h2 {
+    font-size: 1.2rem;
+    color: #474140;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.vs {
+  font-size: 5rem;
+  margin: 0 3rem;
+  color: #474140;
+}
