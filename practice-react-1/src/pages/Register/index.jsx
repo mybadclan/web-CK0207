@@ -1,11 +1,12 @@
-import { Page, Team } from '../../components';
+import { Page, Team, GameTitle } from "../../components";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
-export function Register() {
+export function Register({ data = {}, setData = () => {} }) {
   return (
     <Page className={styles.register}>
-      <Team />
+      <GameTitle data={data} setData={setData} />
+      <Team data={data} setData={setData} />
     </Page>
   );
 }

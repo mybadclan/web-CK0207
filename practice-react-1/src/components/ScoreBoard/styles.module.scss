@@ -1,0 +1,14 @@
+.scoreBoard {
+  width: 600px;
+  border: 1px solid black;
+
+  .title {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+  }
+}
