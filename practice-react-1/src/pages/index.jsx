@@ -10,32 +10,34 @@ export function Pages() {
   // Single source of truth
   const [data, setData] = useState({
     teamOne: {
-      playerOne: "",
-      playerTwo: "",
+      playerOne: "asasads",
+      playerTwo: "bsbabsa",
       lastServe: "",
       currentlyServe: "playerTwo",
     },
     teamTwo: {
-      playerOne: "",
-      playerTwo: "",
+      playerOne: "dffgfd",
+      playerTwo: "yutyurt",
       lastServe: "",
       currentlyServe: "",
     },
     gameInfo: {
-      title: "",
-      points: [
+      title: "Game Title",
+      sets: [
         // to do: clean this array
         {
           teamOne: 1,
           teamTwo: 1,
-          isRunning: true,
         },
         {
           teamOne: 7,
           teamTwo: 6,
-          isRunning: false,
         },
       ],
+      score:{
+        teamOne: 0,
+        teamTwo: 0
+      },
       teamServe: "",
     },
   });

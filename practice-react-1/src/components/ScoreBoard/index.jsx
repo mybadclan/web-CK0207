@@ -1,12 +1,18 @@
 import styles from "./styles.module.scss";
+import { Row, Col } from "react-bootstrap";
+
 export function ScoreBoard({ data = {}, setData = () => {}, children }) {
   return (
     <div className={styles.scoreBoard}>
-      <div className={styles.title}>
-        <p>{data.gameInfo.title}</p>
-      </div>
-
-      {children}
+      <p className={styles.title}>{data.gameInfo.title}</p>
+      <Row>
+        <Col>
+          {children}
+        </Col>
+        <Col>
+          40
+        </Col>
+      </Row>
     </div>
   );
 }
