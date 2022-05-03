@@ -1,26 +1,26 @@
 import styles from "./styles.module.scss";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export function Score({ sets = [], score = {}, setData = () => {}}) {
   return (
-    <div>
+    <Container>
       <Row>
         {sets.map(
           set => {
             return(
               <Col className={styles.sets}>
-                {set.teamOne}
-                {set.teamTwo}
+                <Row>{set.teamOne}</Row>
+                <Row>{set.teamTwo}  </Row>
               </Col>
             )
           }
         )
         }
         <Col className={styles.score}>
-          {score.teamOne}
-          {score.teamTwo}
+          <Row>{score.teamOne}</Row>
+          <Row>{score.teamTwo}</Row>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 }

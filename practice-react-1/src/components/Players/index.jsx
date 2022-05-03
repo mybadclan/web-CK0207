@@ -1,7 +1,8 @@
 import styles from "./styles.module.scss";
+import { Score } from "../../components/Score";
 import {Row, Container, Col} from 'react-bootstrap';
 import { Circles } from "../Circles";
-export function Players({ players }) {
+export function Players({ players, sets, score }) {
   return (
     <Container>
       <Row>
