@@ -8,4 +8,6 @@ export { GameTitle } from './GameTitle';
 export { Checkbox } from './Checkbox';
 export { ScoreBoard } from './ScoreBoard';
 export { Players } from './Players';
+export { SetsType } from './SetsType';
+export { TiebreakType } from './TiebreakType';
 

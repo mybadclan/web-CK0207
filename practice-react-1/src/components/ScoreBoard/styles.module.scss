@@ -1,6 +1,6 @@
 .scoreBoard {
   width: 100%;
-  border: 1px solid black;
+  border: 2px solid black;
 
   .title {
     background-color: black;
@@ -10,5 +10,6 @@
     height: 32px;
     display: flex;
     align-items: center;
+    margin: 0;
   }
 }

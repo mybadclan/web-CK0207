@@ -1,26 +1,31 @@
 import styles from "./styles.module.scss";
 import { Row, Col, Container } from "react-bootstrap";
 
-export function Score({ sets = [], score = {}, setData = () => {}}) {
+export function Score({ sets = [], score = {}, setData = () => {} }) {
   return (
-    <Container>
-      <Row>
-        {sets.map(
-          set => {
-            return(
-              <Col className={styles.sets}>
-                <Row>{set.teamOne}</Row>
-                <Row>{set.teamTwo}  </Row>
-              </Col>
-            )
-          }
-        )
-        }
+    <>
+      <Row className="m-0 p-0">
+        {sets.map((set) => {
+          return (
+            <Col className={styles.sets}>
+              <Row className="d-flex align-items-center justify-content-end">
+                <p className={styles.paragraph}>{set.teamOne}</p>
+              </Row>
+              <Row className="d-flex align-items-center justify-content-end">
+                <p className={styles.paragraph}>{set.teamTwo} </p>
+              </Row>
+            </Col>
+          );
+        })}
         <Col className={styles.score}>
-          <Row>{score.teamOne}</Row>
-          <Row>{score.teamTwo}</Row>
+          <Row className="d-flex align-items-center justify-content-end">
+            <p className={styles.paragraph}>{score.teamOne}</p>
+          </Row>
+          <Row className="d-flex align-items-center justify-content-end">
+            <p className={styles.paragraph}>{score.teamTwo}</p>
+          </Row>
         </Col>
       </Row>
-    </Container>
+    </>
   );
 }

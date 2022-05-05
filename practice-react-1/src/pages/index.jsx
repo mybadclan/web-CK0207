@@ -10,19 +10,21 @@ export function Pages() {
   // Single source of truth
   const [data, setData] = useState({
     teamOne: {
-      playerOne: "asasads",
-      playerTwo: "bsbabsa",
+      playerOne: "",
+      playerTwo: "",
       lastServe: "",
-      currentlyServe: "playerTwo",
+      currentlyServe: "",
     },
     teamTwo: {
-      playerOne: "dffgfd",
-      playerTwo: "yutyurt",
+      playerOne: "",
+      playerTwo: "",
       lastServe: "",
       currentlyServe: "",
     },
     gameInfo: {
-      title: "Game Title",
+      title: "",
+      bestOfThreeSets: true,
+      lastSetIsSupertiebrake: false,
       sets: [
         // to do: clean this array
         {
@@ -34,13 +36,51 @@ export function Pages() {
           teamTwo: 6,
         },
       ],
-      score:{
+      score: {
         teamOne: 0,
-        teamTwo: 0
+        teamTwo: 0,
       },
       teamServe: "",
     },
   });
+
+  useEffect(() => {
+    setData({
+      teamOne: {
+        playerOne: "Player One",
+        playerTwo: "Player Two",
+        lastServe: "",
+        currentlyServe: "playerTwo",
+      },
+      teamTwo: {
+        playerOne: "Player Three",
+        playerTwo: "Player Four",
+        lastServe: "",
+        currentlyServe: "",
+      },
+      gameInfo: {
+        title: "Game Title",
+        bestOfThreeSets: true,
+        lastSetIsSupertiebrake: false,
+        sets: [
+          // to do: clean this array
+          {
+            teamOne: 1,
+            teamTwo: 1,
+          },
+          {
+            teamOne: 7,
+            teamTwo: 6,
+          },
+        ],
+        score: {
+          teamOne: 0,
+          teamTwo: 0,
+        },
+        teamServe: "",
+      },
+    });
+  }, []);
 
   return (
     <BrowserRouter>
