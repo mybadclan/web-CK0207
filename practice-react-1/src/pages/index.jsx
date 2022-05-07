@@ -5,10 +5,12 @@ import { Header } from "../components";
 
 import { Register } from "./Register";
 import { Game } from "./Game";
+import { REGULAR_MODE } from "../constants/game-modes";
 
 export function Pages() {
   // Single source of truth
   const [data, setData] = useState({
+    currentSet: 0,
     teamOne: {
       playerOne: "",
       playerTwo: "",
@@ -23,6 +25,7 @@ export function Pages() {
     },
     gameInfo: {
       title: "",
+      gameMode: REGULAR_MODE,
       bestOfThreeSets: true,
       lastSetIsSupertiebrake: false,
       sets: [
@@ -46,6 +49,7 @@ export function Pages() {
 
   useEffect(() => {
     setData({
+      currentSet: 0,
       teamOne: {
         playerOne: "",
         playerTwo: "",
@@ -59,18 +63,15 @@ export function Pages() {
         currentlyServe: "",
       },
       gameInfo: {
+        gameMode: REGULAR_MODE,
         title: "",
         bestOfThreeSets: true,
         lastSetIsSupertiebrake: false,
         sets: [
           // to do: clean this array
           {
-            teamOne: 1,
-            teamTwo: 1,
-          },
-          {
-            teamOne: 7,
-            teamTwo: 6,
+            teamOne: 0,
+            teamTwo: 0,
           },
         ],
         score: {
