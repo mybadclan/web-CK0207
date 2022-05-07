@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { Page, ScoreBoard, Players } from "../../components";
-import { Row, Col } from "react-bootstrap";
-import { useGame } from "../../hooks/useGame";
+import { Col } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import { Score } from "../../components/Score";
 

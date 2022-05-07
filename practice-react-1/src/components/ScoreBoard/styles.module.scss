@@ -2,14 +2,26 @@
   width: 100%;
   border: 2px solid black;
 
+
+}
+
+.scoreBoardHeader {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1rem;
+  height: 32px;
+  font-weight: bold;
+
   .title {
-    background-color: black;
     color: white;
-    font-weight: bold;
-    padding: 8px;
-    height: 32px;
-    display: flex;
-    align-items: center;
     margin: 0;
+    margin-left: 20px;
+  }
+
+  .timer {
+    margin-right: 10px;
   }
 }

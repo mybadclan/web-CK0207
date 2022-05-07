@@ -1,5 +1,4 @@
 import { Row, Col } from "react-bootstrap";
-import styles from "./styles.module.scss";
 
 export function Circles({ current, setData = () => {} }) {
   return (
