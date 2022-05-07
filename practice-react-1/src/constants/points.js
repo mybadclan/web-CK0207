@@ -1,0 +1,1 @@
+export const POINTS = [0, 15, 30, 40, 60];
