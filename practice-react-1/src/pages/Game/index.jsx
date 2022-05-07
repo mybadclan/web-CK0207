@@ -12,6 +12,8 @@ export function Game({ data = {}, setData = () => {} }) {
   console.log(data);
 
   function updateGameScore(isTeamOne) {
+    if (data.gameInfo.isOver) return;
+
     const originalScore = data.gameInfo.score;
     const updatedGameScore = isTeamOne
       ? {
@@ -30,12 +32,12 @@ export function Game({ data = {}, setData = () => {} }) {
       if (gameMode === TIEBRAKE_MODE)
         return (
           Math.abs(teamOne - teamTwo) >= 2 &&
-          (updatedGameScore.teamOne === 7 || updatedGameScore.teamTwo === 7)
+          (updatedGameScore.teamOne >= 7 || updatedGameScore.teamTwo >= 7)
         );
       if (gameMode === SUPERTIEBRAKE_MODE)
         return (
           Math.abs(teamOne - teamTwo) >= 2 &&
-          (updatedGameScore.teamOne === 10 || updatedGameScore.teamTwo === 10)
+          (updatedGameScore.teamOne >= 10 || updatedGameScore.teamTwo >= 10)
         );
     }
 
@@ -78,11 +80,11 @@ export function Game({ data = {}, setData = () => {} }) {
         return;
       }
 
-      function setWon() {
+      function wonSet() {
         if (gameMode === REGULAR_MODE) {
           return (
             Math.abs(updatedSetScore.teamOne - updatedSetScore.teamTwo) >= 2 &&
-            (updatedSetScore.teamOne === 6 || updatedSetScore.teamTwo === 6)
+            (updatedSetScore.teamOne >= 6 || updatedSetScore.teamTwo >= 6)
           );
         }
 
@@ -91,12 +93,41 @@ export function Game({ data = {}, setData = () => {} }) {
       }
 
       // if set was won, maybe match was won or we're going to a super tiebrake
-      if (setWon()) {
+      if (wonSet()) {
         const { bestOfThreeSets, lastSetIsSupertiebrake } = data.gameInfo;
         const finalSet = bestOfThreeSets ? currentSet === 2 : true;
 
         const nextIsSuperTieBrake =
-          data.currentSet === 2 && bestOfThreeSets && lastSetIsSupertiebrake;
+          data.currentSet === 1 && bestOfThreeSets && lastSetIsSupertiebrake;
+
+        // if we're at final set and somebody won, so the game must have a winner
+        // otherwise, we compute the team scores and see if somebody has 2 points (a 2 x 0 game maybe)
+        // note: if the game is a best of 1, then the set is the final set
+
+        const teamsSetScore = newSets.reduce((previous, current) => {
+         return current.teamOne > current.teamTwo ?
+           { ...previous, teamOne: previous.teamOne + 1 } :
+           { ...previous, teamTwo: previous.teamTwo + 1 };
+        }, { teamOne: 0, teamTwo: 0 });
+
+        const wonMatch = finalSet || teamsSetScore.teamOne == 2 || teamsSetScore.teamTwo == 2;
+        if (wonMatch) {
+          // if game was a supertiebraker, we use the score from the supertiebraker game as
+          // set score, otherwise, just use the regular set score
+          if (gameMode === SUPERTIEBRAKE_MODE) {
+            newSets[currentSet] = updatedGameScore;
+          }
+
+          setData({
+            ...data,
+            gameInfo: {
+              ...data.gameInfo,
+              sets: newSets,
+              isOver: true
+            },
+          });
+          return;
+        }
 
         if (nextIsSuperTieBrake) {
           // means match has no winner yet, so we just continue to a supertiebrake
@@ -114,13 +145,6 @@ export function Game({ data = {}, setData = () => {} }) {
             },
           });
 
-          return;
-        }
-
-        // if set was won, and we're at final set.. so game is over
-        const wonMatch = finalSet;
-        if (wonMatch) {
-          // game has winner
           return;
         }
 
@@ -181,6 +205,7 @@ export function Game({ data = {}, setData = () => {} }) {
             mode={data.gameInfo.gameMode}
             sets={data.gameInfo.sets}
             score={data.gameInfo.score}
+            isOver={data.gameInfo.isOver}
           ></Score>
         </Col>
       </ScoreBoard>
@@ -200,8 +225,7 @@ export function Game({ data = {}, setData = () => {} }) {
           Ponto Time 2
         </button>
 
-        <button className="btn btn-secondary">Desfazer ponto Time 1</button>
-        <button className="btn btn-secondary">Desfazer ponto Time 2</button>
+        <button className="btn btn-secondary">Desfazer ponto</button>
 
         <button className="btn btn-danger">Reiniciar partida</button>
       </Col>

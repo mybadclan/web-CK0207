@@ -24,6 +24,7 @@ export function Pages() {
       currentlyServe: "",
     },
     gameInfo: {
+      isOver: false,
       title: "",
       gameMode: REGULAR_MODE,
       bestOfThreeSets: true,
@@ -64,9 +65,10 @@ export function Pages() {
       },
       gameInfo: {
         gameMode: REGULAR_MODE,
+        isOver: false,
         title: "",
         bestOfThreeSets: true,
-        lastSetIsSupertiebrake: false,
+        lastSetIsSupertiebrake: true,
         sets: [
           // to do: clean this array
           {
