@@ -1,3 +1,10 @@
 .register {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.maxWidth {
+  max-width: 700px;
 }

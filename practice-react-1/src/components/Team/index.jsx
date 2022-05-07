@@ -5,38 +5,41 @@ import { TeamInput } from "../TeamInput";
 
 import styles from "./styles.module.scss";
 
-const isEmpty = (obj) => Object.keys(obj).length === 0;
-
-export function Team() {
-  const [teamOne, setTeamOne] = useState({});
-  const [teamTwo, setTeamTwo] = useState({});
-
+export function Team({ data = {}, setData = () => {} }) {
   const navigate = useNavigate();
 
-  function handleChangeTeamOne(team) {
-    setTeamOne(team);
-  }
+  const handleChangeTeam = (team, player, value) => {
+    const copyOfData = { ...data };
+    copyOfData[team][player] = value;
+    setData(copyOfData);
+  };
 
-  function handleChangeTeamTwo(team) {
-    setTeamTwo(team);
-  }
+  const handleCheckbox = (team, player, value) => {
+    const copyOfData = { ...data };
+    if (value === false) {
+      copyOfData[team].currentlyServe = "";
+    } else {
+      copyOfData.teamOne.currentlyServe = "";
+      copyOfData.teamTwo.currentlyServe = "";
+      copyOfData[team].currentlyServe = player;
+    }
+
+    setData(copyOfData);
+  };
 
   function handleCreateTeams() {
-    const game = { teamOne, teamTwo };
-    const gameJson = JSON.stringify(game);
-
-
-    const searchParams = createSearchParams({
-      game: gameJson,
-    })
-
     navigate({
       pathname: "game",
-      search: `?${searchParams}`,
     });
   }
 
-  const buttonDisabled = isEmpty(teamOne) || isEmpty(teamTwo);
+  const buttonDisabled =
+    data.gameInfo.title.trim() === "" ||
+    data.teamOne.playerOne.trim() === "" ||
+    data.teamOne.playerTwo.trim() === "" ||
+    data.teamTwo.playerOne.trim() === "" ||
+    data.teamTwo.playerTwo.trim() === "" ||
+    (data.teamOne.currentlyServe === "" && data.teamTwo.currentlyServe === "");
 
   return (
     <div className={styles.team}>
@@ -44,13 +47,29 @@ export function Team() {
         <Card className={styles.teamCards}>
           <h2>Time 1</h2>
 
-          <TeamInput onChange={handleChangeTeamOne} />
+          <TeamInput
+            team={data.teamOne}
+            onChange={(player, value) =>
+              handleChangeTeam("teamOne", player, value)
+            }
+            onCheckboxChange={(player, value) =>
+              handleCheckbox("teamOne", player, value)
+            }
+          />
         </Card>
         <p className={styles.vs}>VS</p>
         <Card className={styles.teamCards}>
           <h2>Time 2</h2>
 
-          <TeamInput onChange={handleChangeTeamTwo} />
+          <TeamInput
+            team={data.teamTwo}
+            onChange={(player, value) =>
+              handleChangeTeam("teamTwo", player, value)
+            }
+            onCheckboxChange={(player, value) =>
+              handleCheckbox("teamTwo", player, value)
+            }
+          />
         </Card>
       </div>
 

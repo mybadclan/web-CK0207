@@ -1,42 +1,45 @@
 import { useEffect, useState } from "react";
 
 import { Input } from "../Input";
+import { Checkbox } from "../Checkbox";
 
 import styles from "./styles.module.scss";
 
-export function TeamInput({ onChange }) {
-  const [playerOne, setPlayerOne] = useState("");
-  const [playerTwo, setPlayerTwo] = useState("");
-
+export function TeamInput({ team, onChange, onCheckboxChange }) {
   function handleChangePlayerOne(e) {
-    setPlayerOne(e.target.value);
+    onChange("playerOne", e.target.value);
   }
 
   function handleChangePlayerTwo(e) {
-    setPlayerTwo(e.target.value);
+    onChange("playerTwo", e.target.value);
   }
-
-  useEffect(() => {
-    if (playerOne !== "" && playerTwo !== "" && onChange) {
-      onChange({ playerOne, playerTwo });
-    }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playerOne, playerTwo]);
 
   return (
     <form className={styles.teamInput}>
-      <Input
-        label="Jogador 1"
-        value={playerOne}
-        onChange={handleChangePlayerOne}
-      />
+      <div className={styles.formGroup}>
+        <Input
+          label="Jogador 1"
+          value={team.playerOne}
+          onChange={handleChangePlayerOne}
+        />
 
-      <Input
-        label="Jogador 2"
-        value={playerTwo}
-        onChange={handleChangePlayerTwo}
-      />
+        <Checkbox
+          checked={team.currentlyServe === "playerOne"}
+          onClick={(value) => onCheckboxChange("playerOne", value)}
+        />
+      </div>
+
+      <div className={styles.formGroup}>
+        <Input
+          label="Jogador 2"
+          value={team.playerTwo}
+          onChange={handleChangePlayerTwo}
+        />
+        <Checkbox
+          checked={team.currentlyServe === "playerTwo"}
+          onClick={(value) => onCheckboxChange("playerTwo", value)}
+        />
+      </div>
     </form>
   );
 }

@@ -1,0 +1,15 @@
+.scoreBoard {
+  width: 100%;
+  border: 2px solid black;
+
+  .title {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
