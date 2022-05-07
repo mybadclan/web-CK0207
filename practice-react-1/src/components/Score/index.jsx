@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 export function Score({ sets = [], score = {}, setData = () => {} }) {
   return (

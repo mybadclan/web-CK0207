@@ -1,4 +1,3 @@
-import { Input } from "../Input";
 import styles from "./styles.module.scss";
 
 export function SetsType({ data = {}, setData = () => {} }) {

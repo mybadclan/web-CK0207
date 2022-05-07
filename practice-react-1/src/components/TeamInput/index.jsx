@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Input } from "../Input";
 import { Checkbox } from "../Checkbox";
 
