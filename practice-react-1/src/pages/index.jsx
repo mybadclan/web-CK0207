@@ -47,19 +47,19 @@ export function Pages() {
   useEffect(() => {
     setData({
       teamOne: {
-        playerOne: "Player One",
-        playerTwo: "Player Two",
+        playerOne: "",
+        playerTwo: "",
         lastServe: "",
-        currentlyServe: "playerTwo",
+        currentlyServe: "",
       },
       teamTwo: {
-        playerOne: "Player Three",
-        playerTwo: "Player Four",
+        playerOne: "",
+        playerTwo: "",
         lastServe: "",
         currentlyServe: "",
       },
       gameInfo: {
-        title: "Game Title",
+        title: "",
         bestOfThreeSets: true,
         lastSetIsSupertiebrake: false,
         sets: [
