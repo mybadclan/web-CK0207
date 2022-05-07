@@ -1,0 +1,3 @@
+export const REGULAR_MODE = "REGULAR"
+export const TIEBRAKE_MODE = "TIEBRAKE"
+export const SUPERTIEBRAKE_MODE = "SUPERTIEBRAKE"
