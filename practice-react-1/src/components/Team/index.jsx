@@ -34,6 +34,8 @@ export function Team({ data = {}, setData = () => {} }) {
   };
 
   function handleCreateTeams() {
+    
+
     navigate({
       pathname: "game",
     });

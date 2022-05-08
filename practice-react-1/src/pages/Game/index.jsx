@@ -9,7 +9,6 @@ import {
 } from "../../constants/game-modes";
 
 export function Game({ data = {}, setData = () => {} }) {
-  console.log(data);
 
   function updateGameScore(isTeamOne) {
     if (data.gameInfo.isOver) return;
@@ -23,6 +22,62 @@ export function Game({ data = {}, setData = () => {} }) {
       : { ...originalScore, teamTwo: originalScore.teamTwo + 1 };
 
     const gameMode = data.gameInfo.gameMode;
+
+    function flipPlayer(player) {
+      return player == "playerOne" ? "playerTwo" : "playerOne"
+    }
+
+    function computeNextServe({ onTieBreakOnly = false, useTiebreakHelper  = false}) {
+      // should be called when we need to update the current serve
+      // return a object with teamOne, teamTwo (with updated serves), and maybe a object
+      // with tiebrake-related utility information
+
+      const ignoreNonTieBreak = !!onTieBreakOnly
+      if (ignoreNonTieBreak && gameMode == REGULAR_MODE) return {}
+
+      const isTeamOneWithServe = !!useTiebreakHelper ? data.tiebrakeHelp.startedWithTeamOne : data.teamOne.currentlyServe != ""
+      const teamOne = isTeamOneWithServe ? {
+        ...data.teamOne,
+        currentlyServe: "",
+        lastServe: data.teamOne.currentlyServe,
+      } : {
+        ...data.teamOne,
+        currentlyServe: flipPlayer(data.teamOne.lastServe),
+      }
+
+      const teamTwo = isTeamOneWithServe ? {
+        ...data.teamTwo,
+        currentlyServe: flipPlayer(data.teamTwo.lastServe),
+      } : {
+        ...data.teamTwo,
+        currentlyServe: "",
+        lastServe: data.teamTwo.currentlyServe,
+      }
+
+      if (gameMode == REGULAR_MODE || useTiebreakHelper) return {
+        teamOne, teamTwo, tiebrakeHelp: {
+          startedWithTeamOne: !isTeamOneWithServe,
+          count: 0
+        }
+      }
+
+      const tieBreakHelp = data.tiebrakeHelp
+      const tieBreakCount = tieBreakHelp.count
+
+      if (tieBreakCount % 2 == 0) return {
+        teamOne, teamTwo, tiebrakeHelp: {
+          ...tieBreakHelp,
+          count: tieBreakCount + 1
+        }
+      }
+
+      if (tieBreakCount % 2 != 0) return {
+        tiebrakeHelp: {
+          ...tieBreakHelp,
+          count: tieBreakCount + 1
+        }
+      }
+    }
 
     function wonGame() {
       if (gameMode === REGULAR_MODE)
@@ -75,6 +130,7 @@ export function Game({ data = {}, setData = () => {} }) {
               teamTwo: 0,
             },
           },
+          ...computeNextServe({})
         });
 
         return;
@@ -143,6 +199,7 @@ export function Game({ data = {}, setData = () => {} }) {
                 teamTwo: 0,
               },
             },
+            ...computeNextServe({ useTiebreakHelper: true })
           });
 
           return;
@@ -160,6 +217,7 @@ export function Game({ data = {}, setData = () => {} }) {
               teamTwo: 0,
             },
           },
+          ...computeNextServe({ useTiebreakHelper: true })
         });
 
         return;
@@ -175,6 +233,7 @@ export function Game({ data = {}, setData = () => {} }) {
             teamTwo: 0,
           },
         },
+        ...computeNextServe({})
       });
 
       return;
@@ -190,6 +249,7 @@ export function Game({ data = {}, setData = () => {} }) {
         ...data.gameInfo,
         score: updatedGameScore,
       },
+      ...computeNextServe({ onTieBreakOnly: true })
     });
   }
 

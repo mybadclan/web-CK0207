@@ -32,12 +32,8 @@ export function Pages() {
       sets: [
         // to do: clean this array
         {
-          teamOne: 1,
-          teamTwo: 1,
-        },
-        {
-          teamOne: 7,
-          teamTwo: 6,
+          teamOne: 0,
+          teamTwo: 0,
         },
       ],
       score: {
@@ -68,7 +64,7 @@ export function Pages() {
         isOver: false,
         title: "",
         bestOfThreeSets: true,
-        lastSetIsSupertiebrake: false,
+        lastSetIsSupertiebrake: true,
         sets: [
           // to do: clean this array
           {
