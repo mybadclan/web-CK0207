@@ -12,6 +12,9 @@ import styles from "./styles.module.scss";
 export function Register({ data = {}, setData = () => {} }) {
   return (
     <Page className={styles.register}>
+      <h3>Instruções: </h3>
+
+      <p align="center">O time 1 sempre será o time que vai começar o jogo sacando. O jogador selecionado começará o jogo sacando. Após o fim do primeiro game, o jogador selecionado do time 2 terá o saque. Após isso, o sistema rotacionará o saque dos jogadores.</p>
       <GameTitle data={data} setData={setData} />
       <Row className={[styles.maxWidth, "mb-4"].join(" ")}>
         <Col className="col-3">

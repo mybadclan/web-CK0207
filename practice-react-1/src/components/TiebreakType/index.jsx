@@ -17,16 +17,16 @@ export function TiebreakType({ data = {}, setData = () => {} }) {
   return (
     bestOfThreeSets && (
       <div className={styles.maxWidth}>
-        <p>Tipe de tiebreak</p>
+        <p>Com ou sem super tie brake? </p>
         <div>
           <input
             id="tiebreak"
-            name="tiebreak"
+            name="no-tiebreak"
             type="checkbox"
             checked={!lastSetIsSupertiebrake}
             onClick={changeHandler}
           />{" "}
-          <label htmlFor="tiebreak">Tiebreak simples</label>
+          <label htmlFor="tiebreak">Sem super tie-brake</label>
         </div>
 
         <div>
@@ -37,7 +37,7 @@ export function TiebreakType({ data = {}, setData = () => {} }) {
             checked={lastSetIsSupertiebrake}
             onClick={changeHandler}
           />{" "}
-          <label htmlFor="super-tiebreak">Super tiebreak</label>
+          <label htmlFor="super-tiebreak">Com Super tie-break</label>
         </div>
       </div>
     )

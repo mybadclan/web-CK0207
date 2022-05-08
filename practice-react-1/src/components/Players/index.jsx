@@ -6,7 +6,7 @@ export function Players({ players, sets, score }) {
     <Container>
       <Row>
         <Col className="col-6">
-          {players.playerOne}/{players.playerTwo}
+          {players.playerOne} / {players.playerTwo}
         </Col>
         <Col className="d-flex align-items-center justify-content-end">
           <Circles current={players.currentlyServe}></Circles>
