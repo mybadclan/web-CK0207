@@ -55,12 +55,12 @@ export function Pages() {
         playerOne: "",
         playerTwo: "",
         lastServe: "",
-        currentlyServe: "",
+        currentlyServe: "playerOne",
       },
       teamTwo: {
         playerOne: "",
         playerTwo: "",
-        lastServe: "",
+        lastServe: "playerOne",
         currentlyServe: "",
       },
       gameInfo: {
@@ -68,7 +68,7 @@ export function Pages() {
         isOver: false,
         title: "",
         bestOfThreeSets: true,
-        lastSetIsSupertiebrake: true,
+        lastSetIsSupertiebrake: false,
         sets: [
           // to do: clean this array
           {

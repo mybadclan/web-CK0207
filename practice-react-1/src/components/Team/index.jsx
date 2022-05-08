@@ -16,11 +16,18 @@ export function Team({ data = {}, setData = () => {} }) {
   const handleCheckbox = (team, player, value) => {
     const copyOfData = { ...data };
     if (value === false) {
-      copyOfData[team].currentlyServe = "";
+      if (team == "teamOne") {
+        copyOfData[team].currentlyServe = "";
+      } else {
+        copyOfData[team].lastServe = "";
+      }
+
     } else {
-      copyOfData.teamOne.currentlyServe = "";
-      copyOfData.teamTwo.currentlyServe = "";
-      copyOfData[team].currentlyServe = player;
+      if (team == "teamOne") {
+        copyOfData[team].currentlyServe = player;
+      } else {
+        copyOfData[team].lastServe = player == "playerOne" ? "playerTwo" : "playerOne";
+      }
     }
 
     setData(copyOfData);
@@ -38,7 +45,8 @@ export function Team({ data = {}, setData = () => {} }) {
     data.teamOne.playerTwo.trim() === "" ||
     data.teamTwo.playerOne.trim() === "" ||
     data.teamTwo.playerTwo.trim() === "" ||
-    (data.teamOne.currentlyServe === "" && data.teamTwo.currentlyServe === "");
+    data.teamOne.currentlyServe === "" ||
+    data.teamTwo.lastServe === "";
 
   return (
     <div className={styles.team}>
@@ -47,6 +55,7 @@ export function Team({ data = {}, setData = () => {} }) {
           <h2>Time 1</h2>
 
           <TeamInput
+            teamName="teamOne"
             team={data.teamOne}
             onChange={(player, value) =>
               handleChangeTeam("teamOne", player, value)
@@ -61,6 +70,7 @@ export function Team({ data = {}, setData = () => {} }) {
           <h2>Time 2</h2>
 
           <TeamInput
+            teamName="teamTwo"
             team={data.teamTwo}
             onChange={(player, value) =>
               handleChangeTeam("teamTwo", player, value)

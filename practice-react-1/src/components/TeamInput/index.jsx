@@ -3,7 +3,7 @@ import { Checkbox } from "../Checkbox";
 
 import styles from "./styles.module.scss";
 
-export function TeamInput({ team, onChange, onCheckboxChange }) {
+export function TeamInput({ teamName, team, onChange, onCheckboxChange }) {
   function handleChangePlayerOne(e) {
     onChange("playerOne", e.target.value);
   }
@@ -11,6 +11,11 @@ export function TeamInput({ team, onChange, onCheckboxChange }) {
   function handleChangePlayerTwo(e) {
     onChange("playerTwo", e.target.value);
   }
+  
+  const isTeamOne = teamName === "teamOne";
+  const checkPlayerOne = isTeamOne ? team.currentlyServe == "playerOne" : team.lastServe == "playerTwo"
+  const checkPlayerTwo = isTeamOne ? team.currentlyServe == "playerTwo" : team.lastServe == "playerOne"
+  
 
   return (
     <form className={styles.teamInput}>
@@ -22,7 +27,7 @@ export function TeamInput({ team, onChange, onCheckboxChange }) {
         />
 
         <Checkbox
-          checked={team.currentlyServe === "playerOne"}
+          checked={checkPlayerOne}
           onClick={(value) => onCheckboxChange("playerOne", value)}
         />
       </div>
@@ -34,7 +39,7 @@ export function TeamInput({ team, onChange, onCheckboxChange }) {
           onChange={handleChangePlayerTwo}
         />
         <Checkbox
-          checked={team.currentlyServe === "playerTwo"}
+          checked={checkPlayerTwo}
           onClick={(value) => onCheckboxChange("playerTwo", value)}
         />
       </div>
