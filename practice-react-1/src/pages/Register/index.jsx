@@ -9,7 +9,7 @@ import {
 
 import styles from "./styles.module.scss";
 
-export function Register({ data = {}, setData = () => {} }) {
+export function Register({ data = {}, setData = () => {}, setInitialGameState = () => {} }) {
   return (
     <Page className={styles.register}>
       <h3>Instruções: </h3>
@@ -25,7 +25,7 @@ export function Register({ data = {}, setData = () => {} }) {
         </Col>
       </Row>
 
-      <Team data={data} setData={setData} />
+      <Team data={data} setData={setData} setInitialGameState={setInitialGameState} />
     </Page>
   );
 }

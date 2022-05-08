@@ -4,7 +4,7 @@ import { TeamInput } from "../TeamInput";
 
 import styles from "./styles.module.scss";
 
-export function Team({ data = {}, setData = () => {} }) {
+export function Team({ data = {}, setData = () => {}, setInitialGameState = () => {}}) {
   const navigate = useNavigate();
 
   const handleChangeTeam = (team, player, value) => {
@@ -34,7 +34,7 @@ export function Team({ data = {}, setData = () => {} }) {
   };
 
   function handleCreateTeams() {
-    
+    setInitialGameState(data)
 
     navigate({
       pathname: "game",

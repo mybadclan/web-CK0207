@@ -7,10 +7,14 @@ import {
   SUPERTIEBRAKE_MODE,
   TIEBRAKE_MODE,
 } from "../../constants/game-modes";
+import { useState } from "react";
 
-export function Game({ data = {}, setData = () => {} }) {
+export function Game({ data = {}, setData = () => {}, initialGameState={} }) {
+  // used in order to undo the last point, just restore last state;
+  const [lastState, setLastState] = useState(data)
 
   function updateGameScore(isTeamOne) {
+    setLastState(data)
     if (data.gameInfo.isOver) return;
 
     const originalScore = data.gameInfo.score;
@@ -285,9 +289,9 @@ export function Game({ data = {}, setData = () => {} }) {
           Ponto Time 2
         </button>
 
-        <button className="btn btn-secondary">Desfazer ponto</button>
+        <button onClick={() => setData(lastState)} className="btn btn-secondary">Desfazer ponto</button>
 
-        <button className="btn btn-danger">Reiniciar partida</button>
+        <button onClick={() => setData(initialGameState)} className="btn btn-danger">Reiniciar partida</button>
       </Col>
     </Page>
   );

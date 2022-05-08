@@ -8,6 +8,9 @@ import { Game } from "./Game";
 import { REGULAR_MODE } from "../constants/game-modes";
 
 export function Pages() {
+  // in case we need to restart the game, just reuse the first state the game was when it started
+  const [initialGameState, setInitialGameState] = useState({})
+  
   // Single source of truth
   const [data, setData] = useState({
     currentSet: 0,
@@ -85,8 +88,8 @@ export function Pages() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route index element={<Register data={data} setData={setData} />} />
-        <Route path="game" element={<Game data={data} setData={setData} />} />
+        <Route index element={<Register data={data} setData={setData} setInitialGameState={setInitialGameState} />} />
+        <Route path="game" element={<Game data={data} setData={setData} initialGameState={initialGameState} />} />
       </Routes>
     </BrowserRouter>
   );
